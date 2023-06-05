@@ -14,5 +14,5 @@ def get_volume_info(request: Request):
     return templates.TemplateResponse(
         'VolumeСalculator.html',
         context={'request': request,
-                 'result': main.calculation_of_the_cube_volume}
+                 'result': main.calculation_cube_volume}
     )

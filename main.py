@@ -11,10 +11,26 @@ def index():
     return {'res': 'res'}
 
 
+@app.get('/parallelepiped/{side_length}')
+def calculation_parallelepiped_volume(height_parallelepiped: float, area_parallelepiped: float):
+    if height_parallelepiped and area_parallelepiped > 0:
+        result = height_parallelepiped * area_parallelepiped
+        result = round(result, 3)
+        return {
+            'ParallelepipedVolume': result,
+            'status': 'ok'
+        }
+    else:
+        return {
+            'status': 'Parameters cannot be less than or equal to zero'
+        }
+
+
 @app.get('/cube/{side_length}')
 def calculation_cube_volume(side_length: float):
     if side_length > 0:
         result = side_length ** 3
+        result = round(result, 3)
         return {
             'CubeVolume': result,
             'status': 'ok'
@@ -30,6 +46,7 @@ def calculation_pyramid_volume(height_pyramid: float, area_pyramid: float = None
     if height_pyramid > 0:
         if area_pyramid > 0:
             result = (area_pyramid * height_pyramid) / 3
+            result = round(result, 3)
             return {
                 'PyramidVolume': result,
                 'area_pyramid': area_pyramid,
@@ -38,6 +55,7 @@ def calculation_pyramid_volume(height_pyramid: float, area_pyramid: float = None
             }
         if radius > 0:
             result = (math.pi * radius ** 2 * height_pyramid) / 3
+            result = round(result, 3)
             return {
                 'PyramidVolume': result,
                 'radius': radius,
@@ -58,6 +76,7 @@ def calculation_pyramid_volume(height_pyramid: float, area_pyramid: float = None
 def calculation_sphere_volume(radius_spheres: float):
     if radius_spheres > 0:
         result = 4 / 3 * (math.pi * (radius_spheres ** 3))
+        result = round(result, 3)
         return {
             'SphereVolume': result,
             'RadiusSphere': radius_spheres,
@@ -69,10 +88,11 @@ def calculation_sphere_volume(radius_spheres: float):
         }
 
 
-@app.get('/cylinder/{radius_cylinder}?{height_cylinder}')
+@app.get('/cylinder/{radius_cylinder}')
 def calculation_cylinder_volume(radius_cylinder: float, height_cylinder: float):
-    if all([radius_cylinder, height_cylinder]) > 0:
+    if radius_cylinder and height_cylinder > 0:
         result = math.pi * radius_cylinder ** 2 * height_cylinder
+        result = round(result, 3)
         return {
             'CylinderVolume': result,
             'RadiusCylinder': radius_cylinder,
