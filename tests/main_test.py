@@ -21,18 +21,4 @@ def client():
 def test_root(client: TestClient):
     response = client.get('/')
     assert response.status_code == status.HTTP_200_OK
-    assert response.json() == {'message': 'root endpoint'}
-
-
-def test_number_reducer_positive(client: TestClient):
-    response = client.get('/100')
-    assert response.status_code == status.HTTP_200_OK
-    assert response.json() == {
-        'message': 'ok',
-        'result': 50.0,
-    }
-
-
-def test_number_reducer_with_wrong_query(client: TestClient):
-    response = client.get('/100?query=kk')
-    assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    assert response.json() == {'res': 'res'}

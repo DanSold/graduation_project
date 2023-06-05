@@ -17,5 +17,5 @@ test.app:
 	pytest .\\tests\\$(app)
 
 .PHONY: run
-run:
+run: testall
 	uvicorn main:app --reload
