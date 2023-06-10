@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h4>Volume calculator result</h4>
+<div align="center">
+
+
+<h5>{{ type }}</h5>
+<h5>{{ data }}</h5>
+
+<button onclick="goBack()" style="background-color: black; border: 1.5px solid red; color: white; width: 150px; height: 40px;">Back</button>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+</div>
+{% endblock content %}
